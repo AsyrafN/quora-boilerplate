@@ -10,3 +10,5 @@ get '/' do
   @date.strftime "%d/%m/%Y %H:%M"
   erb :"home"
 end
+
+hello changed this code
