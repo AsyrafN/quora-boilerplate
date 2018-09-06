@@ -2,6 +2,7 @@
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 puts ENV['BUNDLE_GEMFILE']
 
+
 # Gems
 require 'rubygems'
 require 'bundler/setup' if File.exist?(ENV['BUNDLE_GEMFILE'])
@@ -12,6 +13,7 @@ require 'sinatra'
 require 'sinatra/cookies'
 require 'byebug'
 require 'bcrypt'
+enable :sessions
 
 # Set APP_ROOT
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
