@@ -6,7 +6,7 @@ gem 'sinatra-contrib'
 
 gem 'byebug'
 
-gem 'bcrypt'
+gem 'bcrypt', '~> 3.1.7'
 
 gem 'pg', "~> 0.18"
 

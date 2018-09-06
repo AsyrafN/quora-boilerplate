@@ -1,14 +1,22 @@
 require_relative './config/init.rb'
-require 'date'
+
 set :run, true
 
 get '/' do
-  @name = "Bob Smith"
-  erb :"home"
-
-  @date = DateTime.now
-  @date.strftime "%d/%m/%Y %H:%M"
+  # @name = "Bob Smith"
   erb :"home"
 end
+# (email: params[:email], password: params[:password])
+post '/signup' do
+ 	@user = User.new
+ 	@user.email = params[:user][:email]
+	@user.password = params[:user][:password]
+ 	if @user.save
+ 		erb :"signup"
+ 	else
+    	puts "please input valid data"
+  end
+  
+end  
 
-hello changed this code
+# params = {email: "email", password: "password"}
