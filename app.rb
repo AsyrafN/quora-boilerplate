@@ -14,6 +14,23 @@ end
 #   erb :"/users/profile"
 # end
 
+get '/question' do
+  @q = Question.all 
+  erb :'/question/questions'
+end
+
+post "/submit" do
+
+  @q = Question.new(question: params[:question], user_id: current_user.id )
+  
+  if @q.save
+    redirect "/question"
+  else
+    puts "Please enter a valid question"
+  end
+
+end
+
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
 
@@ -28,6 +45,7 @@ get '/404' do
 	return "something went wrong"
 end
 
+
 # (email: params[:email], password: params[:password])
 post '/signup' do
  	@user = User.new
@@ -36,7 +54,7 @@ post '/signup' do
  	@user.email = params[:user][:email]
 	@user.password = params[:user][:password]
  	if @user.save
- 		redirect '/users/profile'
+ 		redirect '/'
  	else
     	puts "please input valid data"
   end
@@ -62,5 +80,6 @@ post '/logout' do
   sign_out
   redirect '/'
 end
+
 
 

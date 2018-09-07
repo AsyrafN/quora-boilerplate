@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+  <h1>All the question</h1>
+  
+  <% @q.each do |x| %>
+
+  	<p><%= x.question %> by <%= x.user.first_name %></p>
+
+  <% end %>
+
+  <form action='/submit' method='post'>
+    Question:<br>
+    <input type="text" name="question" value=""><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <!-- <h2>Logout</h2> -->
+	<form method=post action=/logout>
+    
+    <input type=submit value="logout">
+</form>
+</body>
+</html>
