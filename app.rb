@@ -10,9 +10,24 @@ get '/signup' do
 	erb :"signup"
 end
 
-get '/profile' do
-  erb :"profile"
+# get '/users/profile' do
+#   erb :"/users/profile"
+# end
+
+get '/users/:id' do
+  @user = User.find_by(id: params[:id])
+
+  if @user
+  	erb :"users/profile"
+  else
+  	redirect '/404'
+  end
 end
+
+get '/404' do
+	return "something went wrong"
+end
+
 # (email: params[:email], password: params[:password])
 post '/signup' do
  	@user = User.new
@@ -21,7 +36,7 @@ post '/signup' do
  	@user.email = params[:user][:email]
 	@user.password = params[:user][:password]
  	if @user.save
- 		redirect '/profile'
+ 		redirect '/users/profile'
  	else
     	puts "please input valid data"
   end
@@ -33,15 +48,19 @@ end
 
 post '/login' do
   user = User.find_by_email(params[:user][:email])
-  if user.authenticate(params[:user][:password]) 
-  	session[:user_id] = user.id
-  	redirect '/profile'
+  # p user
+  # p params
+  if user && user.authenticate(params[:user][:password]) 
+  	sign_in(user)
+  	redirect "/users/#{user.id}"
   else
     puts "failed"
   end
 end
 
 post '/logout' do
-  session[:user_id] = nil
+  sign_out
   redirect '/'
 end
+
+
