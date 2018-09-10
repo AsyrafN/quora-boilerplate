@@ -6,7 +6,14 @@
   
   <% @q.each do |x| %>
 
-  	<p><%= x.question %> by <%= x.user.first_name %></p>
+  	<p><%= x.id %>. <%= x.question %> posted by <%= x.user.first_name %></p><form action='/delete/<%=x.id%>' method='post'>
+      <input type="submit" value="delete">
+      <input name="_method" type="hidden" value="delete" />
+    </form>
+    <form>
+      <input type="button" value="edit" onclick="window.location.href='/user/<%=current_user.id%>/question/<%=x.id%>/update'" />
+    </form><br><br>
+
 
   <% end %>
 
@@ -15,6 +22,11 @@
     <input type="text" name="question" value=""><br>
     <input type="submit" value="Submit">
   </form>
+  <!-- Delete -->
+  <!-- <form method=post action=/delete>
+    
+  <input type=submit value="delete"> -->
+ 
 
   <!-- <h2>Logout</h2> -->
 	<form method=post action=/logout>

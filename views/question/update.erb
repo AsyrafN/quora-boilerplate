@@ -1,0 +1,7 @@
+<p>This is the question you wanna update: <%= @q.question%></p>
+
+ <form action='/users/<%=current_user.id%>/question/<%=@q.id%>/update' method='post'>
+    Update question:<br>
+    <input type="text" name="question" value=""><br>
+    <input type="submit" value="update">
+  </form>

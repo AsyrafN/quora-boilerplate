@@ -1,0 +1,19 @@
+<h2>Which question id do you want to delete</h2>
+
+<% @q.each do |x| %>
+
+  	<p><%= x.id %>. <%= x.question %> posted by <%= x.user.first_name %></p>
+  	question/1
+  	<form action='/question/:id' method='post'>
+    <input type="submit" value="delete">
+    <input name="_method" type="hidden" value="delete" />
+  </form>
+
+  <% end %>
+
+   <form action='/delete' method='post'>
+    Delete Id:<br>
+    <input type="text" name="id" value=""><br>
+    <input type="submit" value="delete">
+    <input name="_method" type="hidden" value="delete" />
+  </form>

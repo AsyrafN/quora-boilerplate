@@ -1,6 +1,6 @@
 <p>Welcome to Quora <%= current_user.first_name%></p>
 
-<a href="/question"> Ask your question here</h3>
+<a href="/users/<%= current_user.id %>/question"> Ask your question here</h3>
 <!-- Button to submit asked question -->
  <!-- <form action='/' method='post'>
     Question:<br>
