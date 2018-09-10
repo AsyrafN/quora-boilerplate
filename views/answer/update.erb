@@ -1,0 +1,11 @@
+<p>This is the answer you wanna update: <%= @a.answer%></p>
+
+ <form action='/users/<%=current_user.id%>/question/<%=@q.id%>/answer/<%=@a.id%>/update' method='post'>
+    Update answer:<br>
+    <input type="text" name="answer" value=""><br>
+    <input type="submit" value="update">
+  </form>
+  <form action='/users/<%=current_user.id%>/question/<%=@q.id%>/answer/<%=@a.id%>/delete' method='post'>
+      <input type="submit" value="delete">
+      <input name="_method" type="hidden" value="delete" />
+    </form>

@@ -1,0 +1,7 @@
+<p>This is the question you wanna answer: <%= @q.question%></p>
+
+ <form action='/users/<%=current_user.id%>/question/<%=@q.id%>/answer' method='post'>
+    answer question:<br>
+    <input type="text" name="answer" value=""><br>
+    <input type="submit" value="answer">
+  </form>

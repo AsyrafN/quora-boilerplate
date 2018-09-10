@@ -6,13 +6,25 @@
   
   <% @q.each do |x| %>
 
-  	<p><%= x.id %>. <%= x.question %> posted by <%= x.user.first_name %></p><form action='/delete/<%=x.id%>' method='post'>
+  	<p><%= x.id %>. <%= x.question %> posted by <%= x.user.first_name %></p>
+
+    <% x.answers.each do |a| %>
+
+      <a href="/users/<%= current_user.id %>/question/<%=x.id%>/answer/<%=a.id%>/update"><p><%= a.answer %> </p></a>
+
+    <% end %>
+
+    <form action='/delete/<%=x.id%>' method='post'>
       <input type="submit" value="delete">
       <input name="_method" type="hidden" value="delete" />
     </form>
     <form>
       <input type="button" value="edit" onclick="window.location.href='/user/<%=current_user.id%>/question/<%=x.id%>/update'" />
-    </form><br><br>
+    </form>
+    <form>
+      <input type="button" value="answer" onclick="window.location.href='/user/<%=current_user.id%>/question/<%=x.id%>/answer'" />
+    </form>
+    <br><br>
 
 
   <% end %>
